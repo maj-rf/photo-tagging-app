@@ -1,4 +1,4 @@
-import '../App.css';
+import './styles/App.css';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { SharedSection } from './styles/sharedStyle';
@@ -26,11 +26,6 @@ const StyledSection = styled(SharedSection)`
   li > * {
     text-decoration: none;
     color: black;
-
-    &:hover {
-      color: gray;
-      font-weight: 900;
-    }
   }
 `;
 
@@ -38,11 +33,23 @@ const StyledUl = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  padding-bottom: 1em;
+`;
 
-  li {
-    text-transform: uppercase;
+const StyledLink = styled(Link)`
+  text-transform: uppercase;
+  border: 1px solid black;
+  padding: 0.5em;
+  border-radius: 0.5em 0.5em;
+
+  &:hover {
+    border: 1px solid #c0c0c0;
+    background-color: black;
+    color: #fff;
+    transition: 0.3s ease-in-out;
   }
 `;
+
 function App(props) {
   return (
     <StyledDiv className="App">
@@ -66,7 +73,7 @@ function App(props) {
         <h3>Pick A Difficulty!</h3>
         <StyledUl>
           <li>
-            <Link
+            <StyledLink
               to="/easy"
               onClick={() => {
                 props.changeGameState();
@@ -74,13 +81,13 @@ function App(props) {
               }}
             >
               Easy
-            </Link>
+            </StyledLink>
           </li>
           <li>
-            <Link to="/medium">Medium</Link>
+            <StyledLink to="/medium">Medium</StyledLink>
           </li>
           <li>
-            <Link to="/hard">Hard</Link>
+            <StyledLink to="/hard">Hard</StyledLink>
           </li>
         </StyledUl>
       </StyledSection>

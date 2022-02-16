@@ -6,7 +6,7 @@ const StyledNav = styled.nav`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 5em;
+  height: 5.5em;
 
   position: fixed;
   top: 0;
@@ -15,22 +15,53 @@ const StyledNav = styled.nav`
 
 const StyledUl = styled.ul`
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  li {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+`;
+
+const NavImg = styled.img`
+  height: 65px;
+  width: auto;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  padding: 0.5em;
+  border-radius: 0.5em 0.5em;
+
+  &:hover {
+    border: 1px solid #c0c0c0;
+    background-color: black;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+  }
 `;
 
 export default function Navbar(props) {
+  const arr = [...props.easyItems].slice(3);
   return (
     <StyledNav>
-      <h1>LOGO</h1>
+      <h1>Lookr</h1>
       {props.gameState && (
         <StyledUl>
-          <li>{props.easyItems[0]}</li>
-          <li>{props.easyItems[1]}</li>
-          <li>{props.easyItems[2]}</li>
+          {arr.map((item) => {
+            return (
+              <li key={item.name}>
+                <NavImg src={item.img} alt={item.name} />
+              </li>
+            );
+          })}
         </StyledUl>
       )}
-      <Link to="/" onClick={() => props.revertGameState()}>
+      <StyledLink to="/" onClick={() => props.revertGameState()}>
         Home
-      </Link>
+      </StyledLink>
     </StyledNav>
   );
 }

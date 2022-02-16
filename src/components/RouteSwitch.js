@@ -1,22 +1,22 @@
-import { HashRouter as BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  HashRouter as BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from 'react-router-dom';
 import App from './App';
-import Easy from './Difficulty/Easy';
-import Medium from './Difficulty/Medium';
-import Hard from './Difficulty/Hard';
+import Easy from './pages/Easy';
+import Medium from './pages/Medium';
+import Hard from './pages/Hard';
 import Navbar from './Navbar';
 import { useEffect, useState } from 'react';
 import shuffle from './helpers/shuffle';
+import easy from './helpers/data';
 
 export default function RouteSwitch() {
-  const [easyItems, setEasyItems] = useState([
-    'Patrick',
-    'Morty',
-    'Pikachu',
-    'Courage',
-    'Jack',
-    'Keanu',
-    'Finn',
-  ]);
+  useEffect(() => {});
+
+  const [easyItems, setEasyItems] = useState([...easy]);
 
   const [gameState, setGameState] = useState(false);
 
