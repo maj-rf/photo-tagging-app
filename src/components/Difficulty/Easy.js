@@ -16,13 +16,7 @@ const StyledDiv = styled.div`
   border: 3px solid #fff;
 `;
 
-const StyledUl = styled.ul`
-  display: flex;
-  justify-content: space-around;
-  min-width: 70%;
-`;
-
-export default function Easy(props) {
+export default function Easy() {
   const onMouseDown = (e) =>
     console.log(
       `clientX: ${e.nativeEvent.offsetX}, clientY: ${e.nativeEvent.offsetY}`
@@ -31,11 +25,6 @@ export default function Easy(props) {
   return (
     <StyledSection>
       <h1>Easy</h1>
-      <StyledUl>
-        <li>{props.easyItems[0]}</li>
-        <li>{props.easyItems[1]}</li>
-        <li>{props.easyItems[2]}</li>
-      </StyledUl>
       <StyledDiv>
         <StyledImg src={cartoonpic} onMouseDown={(e) => onMouseDown(e)} />
       </StyledDiv>

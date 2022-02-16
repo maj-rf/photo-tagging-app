@@ -37,15 +37,43 @@ export default function RouteSwitch() {
     'waluigi',
   ]);
 
+  const [gameState, setGameState] = useState(false);
+
+  const easyShuffle = () => {
+    let arr = shuffle(easyItems);
+    setEasyItems(arr);
+  };
+
+  const changeGameState = () => {
+    setGameState(!gameState);
+  };
+
   return (
     <div>
       <BrowserRouter>
         <StyledNav>
           <h1>LOGO</h1>
-          <Link to="/">Home</Link>
+          {gameState && (
+            <ul>
+              <li>{easyItems[0]}</li>
+              <li>{easyItems[1]}</li>
+              <li>{easyItems[2]}</li>
+            </ul>
+          )}
+          <Link to="/" onClick={() => changeGameState()}>
+            Home
+          </Link>
         </StyledNav>
         <Routes>
-          <Route path="/" element={<App />}></Route>
+          <Route
+            path="/"
+            element={
+              <App
+                changeGameState={changeGameState}
+                easyShuffle={easyShuffle}
+              />
+            }
+          ></Route>
           <Route path="/easy" element={<Easy easyItems={easyItems} />}></Route>
           <Route path="/medium" element={<Medium />}></Route>
           <Route path="/hard" element={<Hard />}></Route>
