@@ -30,3 +30,7 @@ li {
   margin: 0;
   list-style: none;
 }
+
+.App {
+  padding-top: 6em;
+}
