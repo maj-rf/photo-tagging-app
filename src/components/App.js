@@ -1,16 +1,11 @@
 import '../App.css';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { SharedSection } from './styles/sharedStyle';
 
 const StyledDiv = styled.div``;
 
-const StyledSection = styled.section`
-  border: 2px solid #fff;
-  border-radius: 1em 1em;
-  width: clamp(350px, 60vw, 100%);
-  font-size: clamp(14px, 2vw, 1.2rem);
-  margin-bottom: 1em;
-
+const StyledSection = styled(SharedSection)`
   h3 {
     width: 100%;
     background-color: #fff;
@@ -27,8 +22,27 @@ const StyledSection = styled.section`
     list-style: number;
     text-align: justify;
   }
+
+  li > * {
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+      color: gray;
+      font-weight: 900;
+    }
+  }
 `;
 
+const StyledUl = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  li {
+    text-transform: uppercase;
+  }
+`;
 function App(props) {
   return (
     <StyledDiv className="App">
@@ -48,26 +62,28 @@ function App(props) {
           <li>Submit your name and check for High Score!</li>
         </ol>
       </StyledSection>
-      <ul>
-        Pick A Difficulty!
-        <li>
-          <Link
-            to="/easy"
-            onClick={() => {
-              props.changeGameState();
-              props.easyShuffle();
-            }}
-          >
-            Easy
-          </Link>
-        </li>
-        <li>
-          <Link to="/medium">Medium</Link>
-        </li>
-        <li>
-          <Link to="/hard">Hard</Link>
-        </li>
-      </ul>
+      <StyledSection>
+        <h3>Pick A Difficulty!</h3>
+        <StyledUl>
+          <li>
+            <Link
+              to="/easy"
+              onClick={() => {
+                props.changeGameState();
+                props.easyShuffle();
+              }}
+            >
+              Easy
+            </Link>
+          </li>
+          <li>
+            <Link to="/medium">Medium</Link>
+          </li>
+          <li>
+            <Link to="/hard">Hard</Link>
+          </li>
+        </StyledUl>
+      </StyledSection>
     </StyledDiv>
   );
 }
