@@ -11,22 +11,33 @@ const StyledSection = styled.section`
 const StyledImg = styled.img`
   max-height: 100vh;
   max-width: 100vw;
+  padding: 0;
+  margin: 0;
 `;
 const StyledDiv = styled.div`
   border: 3px solid #fff;
 `;
 
 export default function Easy() {
-  const onMouseDown = (e) =>
-    console.log(
-      `clientX: ${e.nativeEvent.offsetX}, clientY: ${e.nativeEvent.offsetY}`
+  const onMouseDown = (e) => {
+    const xCoord = Math.round(
+      (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
     );
+    const yCoord = Math.round(
+      (e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100
+    );
+    console.log(xCoord, yCoord);
+  };
 
   return (
     <StyledSection>
       <h1>Easy</h1>
       <StyledDiv>
-        <StyledImg src={cartoonpic} onMouseDown={(e) => onMouseDown(e)} />
+        <StyledImg
+          id="easyPic"
+          src={cartoonpic}
+          onMouseDown={(e) => onMouseDown(e)}
+        />
       </StyledDiv>
     </StyledSection>
   );

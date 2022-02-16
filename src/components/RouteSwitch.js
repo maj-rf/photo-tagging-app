@@ -60,7 +60,7 @@ export default function RouteSwitch() {
               <li>{easyItems[2]}</li>
             </ul>
           )}
-          <Link to="/" onClick={() => changeGameState()}>
+          <Link to="/" onClick={() => setGameState(false)}>
             Home
           </Link>
         </StyledNav>
