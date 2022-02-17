@@ -58,9 +58,11 @@ export default function Navbar(props) {
           })}
         </StyledUl>
       )}
-      <StyledLink to="/" onClick={() => props.revertGameState()}>
-        Home
-      </StyledLink>
+      {props.gameState && (
+        <StyledLink to="/" onClick={() => props.revertGameState()}>
+          Home
+        </StyledLink>
+      )}
     </StyledNav>
   );
 }
