@@ -14,6 +14,7 @@ export default function RouteSwitch() {
   const [easyItems, setEasyItems] = useState(['x']);
   const [gameState, setGameState] = useState(false);
   const [answers, setAnswers] = useState([]);
+  const [name, setName] = useState('');
 
   useEffect(() => {
     const fetchAnswers = async () => {
@@ -24,8 +25,12 @@ export default function RouteSwitch() {
   }, []);
 
   useEffect(() => {
-    if (easyItems.length === 0) console.log('finished game');
+    if (easyItems.length === 0) console.log(`${name} finished the game`);
   });
+
+  const handleChange = (e) => {
+    setName(e.target.value);
+  };
 
   const easyShuffle = () => {
     let arr = shuffle([...easy]);
@@ -42,6 +47,7 @@ export default function RouteSwitch() {
   const revertGameState = () => {
     setGameState(false);
     setEasyItems(['x']);
+    setName('');
   };
 
   const removeCorrectAnswers = (choice) => {
@@ -64,6 +70,8 @@ export default function RouteSwitch() {
               <App
                 changeGameState={changeGameState}
                 easyShuffle={easyShuffle}
+                handleChange={handleChange}
+                name={name}
               />
             }
           ></Route>
@@ -74,6 +82,7 @@ export default function RouteSwitch() {
                 easyItems={easyItems}
                 answers={answers}
                 removeCorrectAnswers={removeCorrectAnswers}
+                name={name}
               />
             }
           ></Route>

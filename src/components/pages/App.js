@@ -2,6 +2,7 @@ import '../styles/App.css';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { SharedSection, GlitchHeader } from '../styles/sharedStyle';
+import { useState } from 'react';
 
 const StyledSection = styled(SharedSection)`
   h3 {
@@ -27,11 +28,14 @@ const StyledSection = styled(SharedSection)`
   }
 `;
 
-const StyledUl = styled.ul`
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding-bottom: 1em;
+const AnotherSection = styled(SharedSection)`
+  h3 {
+    width: 100%;
+    background-color: #fff;
+    margin-top: 0;
+    border-radius: 0.5em 0.5em 0 0;
+  }
+  padding-bottom: 2em;
 `;
 
 const StyledLink = styled(Link)`
@@ -72,9 +76,26 @@ function App(props) {
           <li>Submit your name and check for High Score!</li>
         </ol>
       </StyledSection>
-      <StyledSection>
-        <h3>Pick A Difficulty!</h3>
-        <StyledUl>
+      <AnotherSection>
+        <h3>Enter your name to begin!</h3>
+        <form>
+          <input
+            type="text"
+            placeholder="Benedict Cumberbatch"
+            onChange={props.handleChange}
+            value={props.name}
+          ></input>
+          <StyledLink
+            to="/easy"
+            onClick={() => {
+              props.changeGameState();
+              props.easyShuffle();
+            }}
+          >
+            Submit
+          </StyledLink>
+        </form>
+        {/* <StyledUl>
           <li>
             <StyledLink
               to="/easy"
@@ -86,14 +107,8 @@ function App(props) {
               Easy
             </StyledLink>
           </li>
-          <li>
-            <StyledLink to="/medium">Medium</StyledLink>
-          </li>
-          <li>
-            <StyledLink to="/hard">Hard</StyledLink>
-          </li>
-        </StyledUl>
-      </StyledSection>
+        </StyledUl> */}
+      </AnotherSection>
     </div>
   );
 }

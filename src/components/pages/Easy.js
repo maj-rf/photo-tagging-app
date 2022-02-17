@@ -90,6 +90,7 @@ export default function Easy(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [choiceCoords, setChoiceCoords] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const notif = document.querySelector('.notif');
   // get currentTime on component mount
   useEffect(() => {
     getCurrentTime();
@@ -130,7 +131,6 @@ export default function Easy(props) {
   }
 
   function removeNotification() {
-    const notif = document.querySelector('.notif');
     notif.style.display = 'none';
   }
 
@@ -141,7 +141,6 @@ export default function Easy(props) {
   }
 
   function validateAnswer(choice) {
-    const notif = document.querySelector('.notif');
     const checker = [...props.answers].filter((ans) => ans.id === choice.id);
     const xplus = checker[0].x + 3;
     const yplus = checker[0].y + 3;
