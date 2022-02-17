@@ -11,7 +11,7 @@ import { db } from '../firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
 
 export default function RouteSwitch() {
-  const [easyItems, setEasyItems] = useState([]);
+  const [easyItems, setEasyItems] = useState(['x']);
   const [gameState, setGameState] = useState(false);
   const [answers, setAnswers] = useState([]);
 
@@ -22,6 +22,10 @@ export default function RouteSwitch() {
     };
     fetchAnswers();
   }, []);
+
+  useEffect(() => {
+    if (easyItems.length === 0) console.log('finished game');
+  });
 
   const easyShuffle = () => {
     let arr = shuffle([...easy]);
@@ -37,10 +41,10 @@ export default function RouteSwitch() {
 
   const revertGameState = () => {
     setGameState(false);
+    setEasyItems(['x']);
   };
 
   const removeCorrectAnswers = (choice) => {
-    console.log(choice);
     let reducedArr = easyItems.filter((item) => item.id !== choice.id);
     setEasyItems((prevState) => (prevState = reducedArr));
   };

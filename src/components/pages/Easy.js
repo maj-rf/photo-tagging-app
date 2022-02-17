@@ -126,7 +126,6 @@ export default function Easy(props) {
   function pointImage(e) {
     toggleDropdown(e);
     let coords = convertCoordstoPercent(e);
-    console.log(coords.x, coords.y);
     setChoiceCoords((prevState) => (prevState = { ...coords }));
   }
 
@@ -139,12 +138,6 @@ export default function Easy(props) {
     element.style.display = 'block';
     element.firstChild.textContent = message;
     setTimeout(removeNotification, 2000);
-  }
-
-  function isGameover() {
-    if (props.easyItems.length === 1) {
-      return console.log(getCurrentTime());
-    }
   }
 
   function validateAnswer(choice) {
@@ -163,7 +156,6 @@ export default function Easy(props) {
     ) {
       props.removeCorrectAnswers(choice);
       updateNotification(notif, 'Correct');
-      return isGameover();
     } else updateNotification(notif, `That's not ${choice.name}`);
   }
 
