@@ -99,6 +99,22 @@ export default function Easy(props) {
     setChoiceCoords((prevState) => (prevState = { ...coords }));
   }
 
+  function validateAnswer(choice) {
+    const xplus = choice.x + 3;
+    const yplus = choice.y + 3;
+    const xminus = choice.x - 3;
+    const yminus = choice.y - 3;
+    setIsOpen(false);
+    if (
+      choiceCoords.x < xplus &&
+      choiceCoords.y < yplus &&
+      choiceCoords.x > xminus &&
+      choiceCoords.y > yminus
+    )
+      return 'Correct';
+    else return 'Wrong';
+  }
+
   return (
     <StyledSection>
       <h1>Easy</h1>
@@ -116,7 +132,7 @@ export default function Easy(props) {
                   return (
                     <ListItem
                       key={choice.name + choice.x}
-                      onClick={() => console.log(choiceCoords)}
+                      onClick={() => console.log(validateAnswer(choice))}
                     >
                       {choice.name}
                     </ListItem>
