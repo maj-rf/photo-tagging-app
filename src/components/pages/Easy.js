@@ -53,13 +53,24 @@ const ListItem = styled('li')`
   }
 `;
 
+const ErrorDiv = styled.div`
+  display: none;
+  background-color: green;
+  width: 300px;
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+  bottom: 5px;
+  left: 20px;
+`;
+
 export default function Easy(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [choiceCoords, setChoiceCoords] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   // get currentTime on component mount
   useEffect(() => {
-    console.log(getCurrentTime());
+    getCurrentTime();
   }, []);
 
   function convertCoordstoPercent(e) {
@@ -97,7 +108,25 @@ export default function Easy(props) {
     setChoiceCoords((prevState) => (prevState = { ...coords }));
   }
 
+  function removeNotification() {
+    const notif = document.querySelector('.notif');
+    notif.style.display = 'none';
+  }
+
+  function updateNotification(element, message) {
+    element.style.display = 'block';
+    element.firstChild.textContent = message;
+    setTimeout(removeNotification, 2000);
+  }
+
+  function isGameover() {
+    if (props.easyItems.length === 1) {
+      return console.log(getCurrentTime());
+    }
+  }
+
   function validateAnswer(choice) {
+    const notif = document.querySelector('.notif');
     const checker = [...props.answers].filter((ans) => ans.id === choice.id);
     const xplus = checker[0].x + 3;
     const yplus = checker[0].y + 3;
@@ -111,8 +140,9 @@ export default function Easy(props) {
       choiceCoords.y >= yminus
     ) {
       props.removeCorrectAnswers(choice);
-      return 'Correct';
-    } else return `That's not ${choice.name}`;
+      updateNotification(notif, 'Correct');
+      return isGameover();
+    } else updateNotification(notif, `That's not ${choice.name}`);
   }
 
   return (
@@ -132,7 +162,7 @@ export default function Easy(props) {
                   return (
                     <ListItem
                       key={choice.name + choice.x}
-                      onClick={() => console.log(validateAnswer(choice))}
+                      onClick={() => validateAnswer(choice)}
                     >
                       {choice.name}
                     </ListItem>
@@ -143,6 +173,9 @@ export default function Easy(props) {
           )}
         </DropDownContainer>
       </StyledDiv>
+      <ErrorDiv className="notif">
+        <p>Hello</p>
+      </ErrorDiv>
     </StyledSection>
   );
 }

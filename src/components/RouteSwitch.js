@@ -42,7 +42,7 @@ export default function RouteSwitch() {
   const removeCorrectAnswers = (choice) => {
     console.log(choice);
     let reducedArr = easyItems.filter((item) => item.id !== choice.id);
-    setEasyItems(reducedArr);
+    setEasyItems((prevState) => (prevState = reducedArr));
   };
 
   return (
