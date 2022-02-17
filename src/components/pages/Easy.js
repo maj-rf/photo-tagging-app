@@ -15,7 +15,6 @@ const StyledImg = styled.img`
   margin: 0;
 `;
 const StyledDiv = styled.div`
-  border: 3px solid #fff;
   position: relative;
 `;
 
