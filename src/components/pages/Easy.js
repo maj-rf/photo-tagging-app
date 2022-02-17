@@ -6,7 +6,7 @@ const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 6em;
+  padding-top: 10em;
 `;
 const StyledImg = styled.img`
   max-height: 100vh;
@@ -55,13 +55,35 @@ const ListItem = styled('li')`
 
 const ErrorDiv = styled.div`
   display: none;
-  background-color: green;
+  background-color: #1c1c1c;
+  color: #fff;
   width: 300px;
   text-align: center;
-  position: absolute;
+  position: fixed;
   z-index: 1;
-  bottom: 5px;
-  left: 20px;
+  top: 100px;
+  left: 5px;
+  animation: fadeOut 2s linear forwards;
+
+  @keyframes fadeOut {
+    0% {
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+    99% {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    100% {
+      opacity: 0;
+    }
+  }
 `;
 
 export default function Easy(props) {
@@ -147,7 +169,6 @@ export default function Easy(props) {
 
   return (
     <StyledSection>
-      <h1>Easy</h1>
       <StyledDiv>
         <StyledImg
           id="easyPic"
