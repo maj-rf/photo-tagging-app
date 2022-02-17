@@ -154,6 +154,7 @@ function App(props) {
             Check the Navigation bar above to see what (3) items will you look
             for.
           </li>
+          <li>Hover/tap(on mobile) image items to check item infos.</li>
           <li>Game ends when you find all (3) items.</li>
           <li>Submit your name and check for High Score!</li>
         </ol>

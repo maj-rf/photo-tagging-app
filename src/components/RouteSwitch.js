@@ -1,14 +1,9 @@
-import {
-  HashRouter as BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-} from 'react-router-dom';
+import { HashRouter as BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import Easy from './pages/Easy';
 import Medium from './pages/Medium';
 import Hard from './pages/Hard';
-import Navbar from './Navbar';
+import Navbar from './navbar/Navbar';
 import { useEffect, useState } from 'react';
 import shuffle from './helpers/shuffle';
 import easy from './helpers/data';

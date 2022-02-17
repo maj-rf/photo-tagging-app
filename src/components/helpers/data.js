@@ -6,42 +6,42 @@ import jack from '../../assets/jack.png';
 import keanu from '../../assets/keanu.png';
 const easy = [
   {
-    name: 'patrick',
+    name: 'Patrick',
     img: patrick,
     url: '',
     x: 76,
     y: 64,
   },
   {
-    name: 'morty',
+    name: 'Morty',
     img: morty,
     url: '',
     x: 33,
     y: 37,
   },
   {
-    name: 'pikachu',
+    name: 'Pikachu',
     img: pikachu,
     url: '',
     x: 41,
     y: 74,
   },
   {
-    name: 'Jack',
+    name: 'Samurai Jack',
     img: jack,
     url: '',
     x: 93,
     y: 16,
   },
   {
-    name: 'Keanu',
+    name: 'Keanu Reeves',
     img: keanu,
     url: '',
     x: 21,
     y: 21,
   },
   {
-    name: 'Finn',
+    name: 'Finn the Human',
     img: finn,
     url: '',
     x: 14,

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import NavItem from './NavItem';
+
 const StyledNav = styled.nav`
   background-color: #fff;
   box-shadow: 0px 15px 10px -15px #111;
@@ -21,11 +23,6 @@ const StyledUl = styled.ul`
     margin-left: 1em;
     margin-right: 1em;
   }
-`;
-
-const NavImg = styled.img`
-  height: 65px;
-  width: auto;
 `;
 
 const StyledLink = styled(Link)`
@@ -51,11 +48,7 @@ export default function Navbar(props) {
       {props.gameState && (
         <StyledUl>
           {arr.map((item) => {
-            return (
-              <li key={item.name}>
-                <NavImg src={item.img} alt={item.name} />
-              </li>
-            );
+            return <NavItem key={item.name} item={item} />;
           })}
         </StyledUl>
       )}
