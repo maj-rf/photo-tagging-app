@@ -8,6 +8,7 @@ const easy = [
   {
     name: 'Patrick',
     img: patrick,
+    id: 'patrick',
     url: '',
     x: 76,
     y: 64,
@@ -15,6 +16,7 @@ const easy = [
   {
     name: 'Morty',
     img: morty,
+    id: 'morty',
     url: '',
     x: 33,
     y: 37,
@@ -22,6 +24,7 @@ const easy = [
   {
     name: 'Pikachu',
     img: pikachu,
+    id: 'pikachu',
     url: '',
     x: 41,
     y: 74,
@@ -29,6 +32,7 @@ const easy = [
   {
     name: 'Samurai Jack',
     img: jack,
+    id: 'jack',
     url: '',
     x: 93,
     y: 16,
@@ -36,6 +40,7 @@ const easy = [
   {
     name: 'Keanu Reeves',
     img: keanu,
+    id: 'keanu',
     url: '',
     x: 21,
     y: 21,
@@ -43,6 +48,7 @@ const easy = [
   {
     name: 'Finn the Human',
     img: finn,
+    id: 'finn',
     url: '',
     x: 14,
     y: 54,

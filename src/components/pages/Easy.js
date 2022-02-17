@@ -82,7 +82,7 @@ export default function Easy(props) {
     return totalSeconds;
   }
 
-  function toggling(e) {
+  function toggleDropdown(e) {
     const dropdown = document.querySelector('.dropdown');
     let coords = convertCoordstoPercent(e);
     if (coords.x > 80) coords.x = 65;
@@ -93,7 +93,7 @@ export default function Easy(props) {
   }
 
   function pointImage(e) {
-    toggling(e);
+    toggleDropdown(e);
     let coords = convertCoordstoPercent(e);
     console.log(coords.x, coords.y);
     setChoiceCoords((prevState) => (prevState = { ...coords }));
@@ -112,7 +112,7 @@ export default function Easy(props) {
       choiceCoords.y > yminus
     )
       return 'Correct';
-    else return 'Wrong';
+    else return `That's not ${choice.name}`;
   }
 
   return (
