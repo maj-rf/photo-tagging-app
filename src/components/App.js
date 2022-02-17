@@ -140,9 +140,9 @@ function App(props) {
     <div className="App">
       <StyledHeader>
         <h2 className="glitch">
-          <span aria-hidden="true">LOOKR: A "Where's Waldo" Web App</span>
-          LOOKR: A "Where's Waldo" Web App
-          <span aria-hidden="true">LOOKR: A "Where's Waldo" Web App</span>
+          <span aria-hidden="true">A Where's Waldo-like Web App</span>A Where's
+          Waldo-like Web App
+          <span aria-hidden="true">A Where's Waldo-like Web App</span>
         </h2>
       </StyledHeader>
       <StyledSection>
@@ -154,7 +154,7 @@ function App(props) {
             Check the Navigation bar above to see what (3) items will you look
             for.
           </li>
-          <li>Hover/tap(on mobile) image items to check item infos.</li>
+          <li>Hover/tap(on mobile) image items to see the images larger.</li>
           <li>Game ends when you find all (3) items.</li>
           <li>Submit your name and check for High Score!</li>
         </ol>
