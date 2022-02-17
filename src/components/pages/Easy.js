@@ -63,6 +63,7 @@ export default function Easy(props) {
     console.log(getCurrentTime());
   }, []);
 
+  //function removeCorrectAnswers(choice) {}
   function convertCoordstoPercent(e) {
     let x = Math.round(
       (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
@@ -99,16 +100,17 @@ export default function Easy(props) {
   }
 
   function validateAnswer(choice) {
-    const xplus = choice.x + 3;
-    const yplus = choice.y + 3;
-    const xminus = choice.x - 3;
-    const yminus = choice.y - 3;
+    const checker = [...props.answers].filter((ans) => ans.id === choice.id);
+    const xplus = checker[0].x + 3;
+    const yplus = checker[0].y + 3;
+    const xminus = checker[0].x - 3;
+    const yminus = checker[0].y - 3;
     setIsOpen(false);
     if (
-      choiceCoords.x < xplus &&
-      choiceCoords.y < yplus &&
-      choiceCoords.x > xminus &&
-      choiceCoords.y > yminus
+      choiceCoords.x <= xplus &&
+      choiceCoords.y <= yplus &&
+      choiceCoords.x >= xminus &&
+      choiceCoords.y >= yminus
     )
       return 'Correct';
     else return `That's not ${choice.name}`;

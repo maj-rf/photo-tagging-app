@@ -1,7 +1,7 @@
-import './styles/App.css';
+import '../styles/App.css';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { SharedSection, GlitchHeader } from './styles/sharedStyle';
+import { SharedSection, GlitchHeader } from '../styles/sharedStyle';
 
 const StyledSection = styled(SharedSection)`
   h3 {
