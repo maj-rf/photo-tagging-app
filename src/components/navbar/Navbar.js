@@ -42,7 +42,6 @@ const StyledLink = styled(Link)`
 `;
 
 export default function Navbar(props) {
-  const arr = [...props.easyItems].slice(3);
   return (
     <StyledNav>
       <GlitchHeader>
@@ -54,7 +53,7 @@ export default function Navbar(props) {
       </GlitchHeader>
       {props.gameState && (
         <StyledUl>
-          {arr.map((item) => {
+          {props.easyItems.map((item) => {
             return <NavItem key={item.name} item={item} />;
           })}
         </StyledUl>

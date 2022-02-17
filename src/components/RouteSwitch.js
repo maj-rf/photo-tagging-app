@@ -11,7 +11,7 @@ import { db } from '../firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
 
 export default function RouteSwitch() {
-  const [easyItems, setEasyItems] = useState([...easy]);
+  const [easyItems, setEasyItems] = useState([]);
   const [gameState, setGameState] = useState(false);
   const [answers, setAnswers] = useState([]);
 
@@ -24,8 +24,11 @@ export default function RouteSwitch() {
   }, []);
 
   const easyShuffle = () => {
-    let arr = shuffle(easyItems);
-    setEasyItems(arr);
+    let arr = shuffle([...easy]);
+    const extractedArr = arr.filter((item, index) => {
+      return index >= 0 && index < 3;
+    });
+    setEasyItems(extractedArr);
   };
 
   const changeGameState = () => {
@@ -34,6 +37,12 @@ export default function RouteSwitch() {
 
   const revertGameState = () => {
     setGameState(false);
+  };
+
+  const removeCorrectAnswers = (choice) => {
+    console.log(choice);
+    let reducedArr = easyItems.filter((item) => item.id !== choice.id);
+    setEasyItems(reducedArr);
   };
 
   return (
@@ -56,7 +65,13 @@ export default function RouteSwitch() {
           ></Route>
           <Route
             path="/easy"
-            element={<Easy easyItems={easyItems} answers={answers} />}
+            element={
+              <Easy
+                easyItems={easyItems}
+                answers={answers}
+                removeCorrectAnswers={removeCorrectAnswers}
+              />
+            }
           ></Route>
           <Route path="/medium" element={<Medium />}></Route>
           <Route path="/hard" element={<Hard />}></Route>

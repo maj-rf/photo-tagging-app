@@ -56,14 +56,12 @@ const ListItem = styled('li')`
 export default function Easy(props) {
   const [currentTime, setCurrentTime] = useState(0);
   const [choiceCoords, setChoiceCoords] = useState(null);
-  const choices = [...props.easyItems].slice(3);
   const [isOpen, setIsOpen] = useState(false);
   // get currentTime on component mount
   useEffect(() => {
     console.log(getCurrentTime());
   }, []);
 
-  //function removeCorrectAnswers(choice) {}
   function convertCoordstoPercent(e) {
     let x = Math.round(
       (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
@@ -111,9 +109,10 @@ export default function Easy(props) {
       choiceCoords.y <= yplus &&
       choiceCoords.x >= xminus &&
       choiceCoords.y >= yminus
-    )
+    ) {
+      props.removeCorrectAnswers(choice);
       return 'Correct';
-    else return `That's not ${choice.name}`;
+    } else return `That's not ${choice.name}`;
   }
 
   return (
@@ -129,7 +128,7 @@ export default function Easy(props) {
           {isOpen && (
             <DropDownListContainer>
               <DropDownList>
-                {choices.map((choice) => {
+                {props.easyItems.map((choice) => {
                   return (
                     <ListItem
                       key={choice.name + choice.x}
