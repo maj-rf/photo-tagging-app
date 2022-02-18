@@ -8,32 +8,40 @@ import Leaderboard from './pages/Leaderboard';
 import { useState, useEffect } from 'react';
 import shuffle from './helpers/shuffle';
 import easy from './helpers/data';
-import { fetchAnswers, fetchScores } from './firebase/firebase';
+import { fetchAnswers, fetchUsers, submitUser } from './firebase/firebase';
 
 export default function RouteSwitch() {
   const [easyItems, setEasyItems] = useState(['x']);
   const [gameState, setGameState] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [name, setName] = useState('');
-  const [currentTime, setCurrentTime] = useState(0);
-  const [scores, setScores] = useState({});
+  const [startTime, setStartTime] = useState(0);
+  //const [endTime, setEndTime] = useState(0);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     fetchAnswers(setAnswers);
-    fetchScores(setScores);
+    fetchUsers(setUsers);
     console.log('fetching');
   }, []);
 
   useEffect(() => {
-    if (easyItems.length === 0) console.log(`${name} finished the game`);
+    if (easyItems.length === 0) {
+      console.log(`${name} finished the game`);
+      submitUser(name, startTime, getCurrentTime());
+      // console.log(endTime);
+    }
   });
 
   function getCurrentTime() {
     let today = new Date();
     let totalSeconds =
       today.getHours() * 60 * 60 + today.getMinutes() * 60 + today.getSeconds();
-    setCurrentTime(totalSeconds);
     return totalSeconds;
+  }
+
+  function getStartTime() {
+    setStartTime(getCurrentTime());
   }
 
   const handleChange = (e) => {
@@ -56,6 +64,7 @@ export default function RouteSwitch() {
     setGameState(false);
     setEasyItems(['x']);
     setName('');
+    setStartTime(0);
   };
 
   const removeCorrectAnswers = (choice) => {
@@ -80,6 +89,7 @@ export default function RouteSwitch() {
                 easyShuffle={easyShuffle}
                 handleChange={handleChange}
                 name={name}
+                getStartTime={getStartTime}
               />
             }
           ></Route>
@@ -91,7 +101,6 @@ export default function RouteSwitch() {
                 answers={answers}
                 removeCorrectAnswers={removeCorrectAnswers}
                 name={name}
-                currentTime={currentTime}
                 getCurrentTime={getCurrentTime}
               />
             }
@@ -100,7 +109,7 @@ export default function RouteSwitch() {
           <Route path="/hard" element={<Hard />}></Route>
           <Route
             path="/leaderboard"
-            element={<Leaderboard scores={scores} />}
+            element={<Leaderboard users={users} />}
           ></Route>
         </Routes>
       </BrowserRouter>

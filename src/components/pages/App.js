@@ -107,6 +107,7 @@ function App(props) {
             onClick={() => {
               props.startGame();
               props.easyShuffle();
+              props.getStartTime();
             }}
           >
             Submit

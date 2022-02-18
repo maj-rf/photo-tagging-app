@@ -88,14 +88,9 @@ const ErrorDiv = styled.div`
 `;
 
 export default function Easy(props) {
-  //const [currentTime, setCurrentTime] = useState(0);
   const [choiceCoords, setChoiceCoords] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const notif = document.querySelector('.notif');
-  // get currentTime on component mount
-  // useEffect(() => {
-  //   getCurrentTime();
-  // }, []);
 
   function convertCoordstoPercent(e) {
     let x = Math.round(
@@ -106,14 +101,6 @@ export default function Easy(props) {
     );
     return { x, y };
   }
-
-  // function getCurrentTime() {
-  //   let today = new Date();
-  //   let totalSeconds =
-  //     today.getHours() * 60 * 60 + today.getMinutes() * 60 + today.getSeconds();
-  //   setCurrentTime(totalSeconds);
-  //   return totalSeconds;
-  // }
 
   function toggleDropdown(e) {
     const dropdown = document.querySelector('.dropdown');

@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, addDoc } from 'firebase/firestore';
 import { firebaseConfig } from './firebase-config';
 
 // Initialize Firebase
@@ -12,9 +12,18 @@ async function fetchAnswers(setData) {
   setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 }
 
-async function fetchScores(setData) {
+async function fetchUsers(setData) {
   const data = await getDocs(collection(db, 'user'));
   setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 }
 
-export { fetchAnswers, fetchScores };
+async function submitUser(name, start, end) {
+  await addDoc(collection(db, 'user'), {
+    name: name,
+    timeStart: start,
+    timeEnd: end,
+  });
+  console.log('submitted');
+}
+
+export { fetchAnswers, fetchUsers, submitUser };

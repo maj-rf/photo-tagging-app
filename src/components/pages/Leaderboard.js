@@ -10,14 +10,33 @@ const StyledSection = styled.section`
 export default function Leaderboard(props) {
   function calculateFinalScore(user) {
     let final = user.timeEnd - user.timeStart;
-    return `${user.name} : ${Math.floor(final / 60)}:${final % 60}`;
+    return `${Math.floor(final / 60)}:${final % 60}`;
   }
+
+  let sorted = [...props.users].sort((a, b) => {
+    return a.timeEnd - a.timeStart - (b.timeEnd - b.timeStart);
+  });
+
+  console.log(sorted);
   return (
     <StyledSection>
       <h1>Leaderboard</h1>
-      {props.scores.map((user) => {
-        return <div key={user.id}>{calculateFinalScore(user)}</div>;
-      })}
+      <table>
+        <tbody>
+          <tr>
+            <th>User</th>
+            <th>Time</th>
+          </tr>
+          {sorted.map((user) => {
+            return (
+              <tr key={user.id}>
+                <td>{user.name}</td>
+                <td>{calculateFinalScore(user)}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </StyledSection>
   );
 }
