@@ -7,26 +7,31 @@ import Navbar from './navbar/Navbar';
 import { useState, useEffect } from 'react';
 import shuffle from './helpers/shuffle';
 import easy from './helpers/data';
-import { db } from '../firebase-config';
-import { collection, getDocs } from 'firebase/firestore';
+import fetchAnswers from './firebase/firebase';
 
 export default function RouteSwitch() {
   const [easyItems, setEasyItems] = useState(['x']);
   const [gameState, setGameState] = useState(false);
   const [answers, setAnswers] = useState([]);
   const [name, setName] = useState('');
+  const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
-    const fetchAnswers = async () => {
-      const data = await getDocs(collection(db, 'answers'));
-      setAnswers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    fetchAnswers();
+    fetchAnswers(setAnswers);
+    console.log('fetching');
   }, []);
 
   useEffect(() => {
     if (easyItems.length === 0) console.log(`${name} finished the game`);
   });
+
+  function getCurrentTime() {
+    let today = new Date();
+    let totalSeconds =
+      today.getHours() * 60 * 60 + today.getMinutes() * 60 + today.getSeconds();
+    setCurrentTime(totalSeconds);
+    return totalSeconds;
+  }
 
   const handleChange = (e) => {
     setName(e.target.value);
@@ -40,8 +45,8 @@ export default function RouteSwitch() {
     setEasyItems(extractedArr);
   };
 
-  const changeGameState = () => {
-    setGameState(!gameState);
+  const startGame = () => {
+    setGameState(true);
   };
 
   const revertGameState = () => {
@@ -68,7 +73,7 @@ export default function RouteSwitch() {
             path="/"
             element={
               <App
-                changeGameState={changeGameState}
+                startGame={startGame}
                 easyShuffle={easyShuffle}
                 handleChange={handleChange}
                 name={name}
@@ -83,6 +88,8 @@ export default function RouteSwitch() {
                 answers={answers}
                 removeCorrectAnswers={removeCorrectAnswers}
                 name={name}
+                currentTime={currentTime}
+                getCurrentTime={getCurrentTime}
               />
             }
           ></Route>

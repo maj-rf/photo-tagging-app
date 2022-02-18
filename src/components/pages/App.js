@@ -2,7 +2,6 @@ import '../styles/App.css';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { SharedSection, GlitchHeader } from '../styles/sharedStyle';
-import { useState } from 'react';
 
 const StyledSection = styled(SharedSection)`
   h3 {
@@ -40,6 +39,8 @@ const AnotherSection = styled(SharedSection)`
 
 const StyledLink = styled(Link)`
   text-transform: uppercase;
+  text-decoration: none;
+  color: black;
   border: 1px solid black;
   padding: 0.5em;
   border-radius: 0.5em 0.5em;
@@ -49,6 +50,22 @@ const StyledLink = styled(Link)`
     background-color: black;
     color: #fff;
     transition: 0.3s ease-in-out;
+  }
+`;
+
+const Form = styled.form`
+  input {
+    padding: 0.5em;
+    width: 250px;
+    font-size: clamp(14px, 2vw, 1.2rem);
+    margin-right: 0.3em;
+    outline: none;
+    border: 2px solid #fff;
+    border-radius: 1em 1em;
+
+    &:hover {
+      border: 2px solid black;
+    }
   }
 `;
 
@@ -78,36 +95,23 @@ function App(props) {
       </StyledSection>
       <AnotherSection>
         <h3>Enter your name to begin!</h3>
-        <form>
+        <Form id="my-form" onSubmit={(e) => e.preventDefault()}>
           <input
             type="text"
-            placeholder="Benedict Cumberbatch"
+            placeholder="Tom Hiddleston"
             onChange={props.handleChange}
             value={props.name}
           ></input>
           <StyledLink
             to="/easy"
             onClick={() => {
-              props.changeGameState();
+              props.startGame();
               props.easyShuffle();
             }}
           >
             Submit
           </StyledLink>
-        </form>
-        {/* <StyledUl>
-          <li>
-            <StyledLink
-              to="/easy"
-              onClick={() => {
-                props.changeGameState();
-                props.easyShuffle();
-              }}
-            >
-              Easy
-            </StyledLink>
-          </li>
-        </StyledUl> */}
+        </Form>
       </AnotherSection>
     </div>
   );
