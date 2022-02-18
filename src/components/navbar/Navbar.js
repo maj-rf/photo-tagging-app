@@ -51,17 +51,24 @@ export default function Navbar(props) {
           <span aria-hidden="true">LOOKR</span>
         </h2>
       </GlitchHeader>
-      {props.gameState && (
-        <StyledUl>
-          {props.easyItems.map((item) => {
-            return <NavItem key={item.name} item={item} />;
-          })}
-        </StyledUl>
-      )}
-      {props.gameState && (
-        <StyledLink to="/" onClick={() => props.revertGameState()}>
-          Home
-        </StyledLink>
+      {props.gameState ? (
+        <>
+          <StyledUl>
+            {props.easyItems.map((item) => {
+              return <NavItem key={item.name} item={item} />;
+            })}
+          </StyledUl>
+          <StyledLink to="/" onClick={() => props.revertGameState()}>
+            Home
+          </StyledLink>
+        </>
+      ) : (
+        <>
+          <StyledLink to="/leaderboard">Leaderboard</StyledLink>
+          <StyledLink to="/" onClick={() => props.revertGameState()}>
+            Home
+          </StyledLink>
+        </>
       )}
     </StyledNav>
   );

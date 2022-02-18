@@ -4,6 +4,7 @@ import Easy from './pages/Easy';
 import Medium from './pages/Medium';
 import Hard from './pages/Hard';
 import Navbar from './navbar/Navbar';
+import Leaderboard from './pages/Leaderboard';
 import { useState, useEffect } from 'react';
 import shuffle from './helpers/shuffle';
 import easy from './helpers/data';
@@ -95,6 +96,7 @@ export default function RouteSwitch() {
           ></Route>
           <Route path="/medium" element={<Medium />}></Route>
           <Route path="/hard" element={<Hard />}></Route>
+          <Route path="/leaderboard" element={<Leaderboard />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
