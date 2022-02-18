@@ -84,6 +84,7 @@ export default function RouteSwitch() {
                 getCurrentTime={getCurrentTime}
                 startTime={startTime}
                 submitUser={submitUser}
+                revertGameState={revertGameState}
               />
             }
           ></Route>

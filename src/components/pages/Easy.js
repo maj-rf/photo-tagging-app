@@ -1,7 +1,8 @@
 import cartoonpic from '../../assets/cartoonpic.jpeg';
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { convertCoordstoPercent } from '../utils/utils';
+import { Link } from 'react-router-dom';
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -54,6 +55,21 @@ const ListItem = styled('li')`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 0.5em;
+  border-radius: 0.5em 0.5em;
+  font-size: 1em;
+  &:hover {
+    border: 1px solid #c0c0c0;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+  }
+`;
+
 const ErrorDiv = styled.div`
   display: none;
   background-color: #1c1c1c;
@@ -87,7 +103,29 @@ const ErrorDiv = styled.div`
   }
 `;
 
+const EndgameModal = styled.div`
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  color: white;
+  font-size: 2em;
+  z-index: 3;
+  div {
+    text-align: center;
+    margin-top: 0.5em;
+  }
+`;
+
 export default function Easy(props) {
+  const modalRef = useRef(null);
   const [choiceCoords, setChoiceCoords] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const notif = document.querySelector('.notif');
@@ -95,9 +133,21 @@ export default function Easy(props) {
   useEffect(() => {
     if (props.easyItems.length === 0) {
       props.submitUser(props.name, props.startTime, props.getCurrentTime());
+      gameOver();
     }
   });
 
+  function showFinalScore() {
+    let final = props.getCurrentTime() - props.startTime;
+    let minutes = Math.floor(final / 60);
+    let seconds = final % 60;
+    if (seconds < 10) seconds = '0' + seconds;
+    return `${minutes}:${seconds}`;
+  }
+
+  function gameOver() {
+    modalRef.current.style.display = 'flex';
+  }
   function toggleDropdown(e) {
     const dropdown = document.querySelector('.dropdown');
     let coords = convertCoordstoPercent(e);
@@ -172,6 +222,13 @@ export default function Easy(props) {
       <ErrorDiv className="notif">
         <p>Hello</p>
       </ErrorDiv>
+      <EndgameModal ref={modalRef}>
+        <div>
+          <h1>Game Over</h1>
+          <h2>Your time is {showFinalScore()}</h2>
+          <StyledLink to="/leaderboard">Leaderboard</StyledLink>
+        </div>
+      </EndgameModal>
     </StyledSection>
   );
 }
