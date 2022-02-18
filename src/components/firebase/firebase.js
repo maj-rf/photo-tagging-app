@@ -13,8 +13,14 @@ async function fetchAnswers(setData) {
 }
 
 async function fetchUsers(setData) {
+  let currentArr = [];
   const data = await getDocs(collection(db, 'user'));
-  setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  currentArr = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  let sorted = currentArr.sort((a, b) => {
+    return a.timeEnd - a.timeStart - (b.timeEnd - b.timeStart);
+  });
+  currentArr = sorted.slice(0, 10);
+  setData(currentArr);
 }
 
 async function submitUser(name, start, end) {

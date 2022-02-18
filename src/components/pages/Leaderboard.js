@@ -16,9 +16,6 @@ export default function Leaderboard() {
     fetchUsers(setUsers);
   }, []);
 
-  let sorted = [...users].sort((a, b) => {
-    return a.timeEnd - a.timeStart - (b.timeEnd - b.timeStart);
-  });
   return (
     <StyledSection>
       <h1>Leaderboard</h1>
@@ -28,7 +25,7 @@ export default function Leaderboard() {
             <th>User</th>
             <th>Time</th>
           </tr>
-          {sorted.map((user) => {
+          {users.map((user) => {
             return (
               <tr key={user.id}>
                 <td>{user.name}</td>
