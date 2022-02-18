@@ -1,6 +1,6 @@
 import cartoonpic from '../../assets/cartoonpic.jpeg';
 import styled from 'styled-components';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { convertCoordstoPercent } from '../utils/utils';
 const StyledSection = styled.section`
   display: flex;
@@ -91,6 +91,12 @@ export default function Easy(props) {
   const [choiceCoords, setChoiceCoords] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const notif = document.querySelector('.notif');
+
+  useEffect(() => {
+    if (props.easyItems.length === 0) {
+      props.submitUser(props.name, props.startTime, props.getCurrentTime());
+    }
+  });
 
   function toggleDropdown(e) {
     const dropdown = document.querySelector('.dropdown');

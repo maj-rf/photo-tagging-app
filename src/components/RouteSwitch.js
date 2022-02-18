@@ -22,12 +22,6 @@ export default function RouteSwitch() {
     console.log('fetching');
   }, []);
 
-  useEffect(() => {
-    if (easyItems.length === 0) {
-      submitUser(name, startTime, getCurrentTime());
-    }
-  });
-
   function getStartTime() {
     setStartTime(getCurrentTime());
   }
@@ -90,6 +84,8 @@ export default function RouteSwitch() {
                 removeCorrectAnswers={removeCorrectAnswers}
                 name={name}
                 getCurrentTime={getCurrentTime}
+                startTime={startTime}
+                submitUser={submitUser}
               />
             }
           ></Route>
