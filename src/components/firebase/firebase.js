@@ -23,7 +23,6 @@ async function submitUser(name, start, end) {
     timeStart: start,
     timeEnd: end,
   });
-  console.log('submitted');
 }
 
 export { fetchAnswers, fetchUsers, submitUser };

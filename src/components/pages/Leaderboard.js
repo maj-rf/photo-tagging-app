@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { calculateFinalScore } from '../utils/utils';
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -8,16 +8,9 @@ const StyledSection = styled.section`
 `;
 
 export default function Leaderboard(props) {
-  function calculateFinalScore(user) {
-    let final = user.timeEnd - user.timeStart;
-    return `${Math.floor(final / 60)}:${final % 60}`;
-  }
-
   let sorted = [...props.users].sort((a, b) => {
     return a.timeEnd - a.timeStart - (b.timeEnd - b.timeStart);
   });
-
-  console.log(sorted);
   return (
     <StyledSection>
       <h1>Leaderboard</h1>

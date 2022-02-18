@@ -1,7 +1,7 @@
 import cartoonpic from '../../assets/cartoonpic.jpeg';
 import styled from 'styled-components';
-import React, { useEffect, useState } from 'react';
-
+import React, { useState } from 'react';
+import { convertCoordstoPercent } from '../utils/utils';
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -91,16 +91,6 @@ export default function Easy(props) {
   const [choiceCoords, setChoiceCoords] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const notif = document.querySelector('.notif');
-
-  function convertCoordstoPercent(e) {
-    let x = Math.round(
-      (e.nativeEvent.offsetX / e.nativeEvent.target.offsetWidth) * 100
-    );
-    let y = Math.round(
-      (e.nativeEvent.offsetY / e.nativeEvent.target.offsetHeight) * 100
-    );
-    return { x, y };
-  }
 
   function toggleDropdown(e) {
     const dropdown = document.querySelector('.dropdown');
