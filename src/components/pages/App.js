@@ -82,15 +82,15 @@ function App(props) {
       <StyledSection>
         <h3>How to Play:</h3>
         <ol>
-          <li>Select a Difficulty and an image will be provided to you.</li>
+          <li>Submit your name and an image will be provided to you.</li>
           <li>Timer will start as soon as the image loads.</li>
           <li>
-            Check the Navigation bar above to see what (3) items will you look
-            for.
+            Check the Navigation bar above to see what (3) items you'll be
+            searching for.
           </li>
-          <li>Hover/tap(on mobile) image items to see the images larger.</li>
+          <li>Hover/tap image items to see item infos.</li>
           <li>Game ends when you find all (3) items.</li>
-          <li>Submit your name and check for High Score!</li>
+          <li>Check for High Score!</li>
         </ol>
       </StyledSection>
       <AnotherSection>

@@ -6,7 +6,7 @@ import Leaderboard from './pages/Leaderboard';
 import { useState, useEffect } from 'react';
 import shuffle from './helpers/shuffle';
 import easy from './helpers/data';
-import { fetchAnswers, fetchUsers, submitUser } from './firebase/firebase';
+import { fetchAnswers, submitUser } from './firebase/firebase';
 import { getCurrentTime } from './utils/utils';
 export default function RouteSwitch() {
   const [easyItems, setEasyItems] = useState(['x']);
@@ -14,11 +14,9 @@ export default function RouteSwitch() {
   const [answers, setAnswers] = useState([]);
   const [name, setName] = useState('');
   const [startTime, setStartTime] = useState(0);
-  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     fetchAnswers(setAnswers);
-    fetchUsers(setUsers);
     console.log('fetching');
   }, []);
 
@@ -89,10 +87,7 @@ export default function RouteSwitch() {
               />
             }
           ></Route>
-          <Route
-            path="/leaderboard"
-            element={<Leaderboard users={users} />}
-          ></Route>
+          <Route path="/leaderboard" element={<Leaderboard />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

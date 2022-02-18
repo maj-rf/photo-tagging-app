@@ -1,5 +1,7 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { calculateFinalScore } from '../utils/utils';
+import { fetchUsers } from '../firebase/firebase';
 const StyledSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -7,8 +9,14 @@ const StyledSection = styled.section`
   padding-top: 10em;
 `;
 
-export default function Leaderboard(props) {
-  let sorted = [...props.users].sort((a, b) => {
+export default function Leaderboard() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetchUsers(setUsers);
+  }, []);
+
+  let sorted = [...users].sort((a, b) => {
     return a.timeEnd - a.timeStart - (b.timeEnd - b.timeStart);
   });
   return (
