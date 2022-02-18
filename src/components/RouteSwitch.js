@@ -8,7 +8,7 @@ import Leaderboard from './pages/Leaderboard';
 import { useState, useEffect } from 'react';
 import shuffle from './helpers/shuffle';
 import easy from './helpers/data';
-import fetchAnswers from './firebase/firebase';
+import { fetchAnswers, fetchScores } from './firebase/firebase';
 
 export default function RouteSwitch() {
   const [easyItems, setEasyItems] = useState(['x']);
@@ -16,9 +16,11 @@ export default function RouteSwitch() {
   const [answers, setAnswers] = useState([]);
   const [name, setName] = useState('');
   const [currentTime, setCurrentTime] = useState(0);
+  const [scores, setScores] = useState({});
 
   useEffect(() => {
     fetchAnswers(setAnswers);
+    fetchScores(setScores);
     console.log('fetching');
   }, []);
 
@@ -96,7 +98,10 @@ export default function RouteSwitch() {
           ></Route>
           <Route path="/medium" element={<Medium />}></Route>
           <Route path="/hard" element={<Hard />}></Route>
-          <Route path="/leaderboard" element={<Leaderboard />}></Route>
+          <Route
+            path="/leaderboard"
+            element={<Leaderboard scores={scores} />}
+          ></Route>
         </Routes>
       </BrowserRouter>
     </div>

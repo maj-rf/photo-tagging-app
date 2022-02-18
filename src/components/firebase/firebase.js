@@ -12,4 +12,9 @@ async function fetchAnswers(setData) {
   setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
 }
 
-export default fetchAnswers;
+async function fetchScores(setData) {
+  const data = await getDocs(collection(db, 'user'));
+  setData(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+}
+
+export { fetchAnswers, fetchScores };
