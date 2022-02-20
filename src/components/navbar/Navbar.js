@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import NavItem from './NavItem';
 import { GlitchHeader } from '../styles/sharedStyle';
+
 const StyledNav = styled.nav`
   background-color: #fff;
   box-shadow: 0px 15px 10px -15px #111;

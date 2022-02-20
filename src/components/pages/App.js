@@ -2,6 +2,7 @@ import '../styles/App.css';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { SharedSection, GlitchHeader } from '../styles/sharedStyle';
+import ghIcon from '../../assets/gh-icon.png';
 
 const StyledSection = styled(SharedSection)`
   h3 {
@@ -69,6 +70,13 @@ const Form = styled.form`
   }
 `;
 
+const GhDiv = styled.div`
+  img {
+    height: 50px;
+    width: 50px;
+  }
+`;
+
 function App(props) {
   return (
     <div className="App">
@@ -114,6 +122,11 @@ function App(props) {
           </StyledLink>
         </Form>
       </AnotherSection>
+      <GhDiv>
+        <a href="https://github.com/bananabread08/photo-tagging-app">
+          <img src={ghIcon} alt="github icon"></img>
+        </a>
+      </GhDiv>
     </div>
   );
 }
