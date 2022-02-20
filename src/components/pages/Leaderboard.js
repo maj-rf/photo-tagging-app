@@ -1,40 +1,97 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { calculateFinalScore } from '../utils/utils';
 import { fetchUsers } from '../firebase/firebase';
-const StyledSection = styled.section`
+const BoardWrapper = styled.section`
+  height: 100vh;
+`;
+
+const BoardBody = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 10em;
+  justify-content: center;
+  height: 100%;
+
+  table {
+    background-color: #fff;
+    min-width: 60%;
+    text-align: justify;
+  }
+
+  thead {
+    background-color: aliceblue;
+    text-transform: uppercase;
+  }
+
+  tbody > tr:nth-child(odd) {
+    background-color: #f0f0f0;
+  }
+`;
+
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+
+`;
+const Spinner = styled.div`
+  display: inline-block;
+  width: 120px;
+  height: 120px;
+
+  &:after {
+    content: ' ';
+    display: block;
+    width: 120px;
+    height: 120px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: ${spin} 1.2s linear infinite;
+  }
 `;
 
 export default function Leaderboard() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(false);
 
   useEffect(() => {
     fetchUsers(setUsers);
   }, []);
 
   return (
-    <StyledSection>
-      <h1>Leaderboard</h1>
-      <table>
-        <tbody>
-          <tr>
-            <th>User</th>
-            <th>Time</th>
-          </tr>
-          {users.map((user) => {
-            return (
-              <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{calculateFinalScore(user)}</td>
+    <BoardWrapper>
+      {users ? (
+        <BoardBody>
+          <h1>Leaderboard</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>Time</th>
               </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </StyledSection>
+            </thead>
+            <tbody>
+              {users.map((user) => {
+                return (
+                  <tr key={user.id}>
+                    <td>{user.name}</td>
+                    <td>{calculateFinalScore(user)}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </BoardBody>
+      ) : (
+        <BoardBody>
+          <Spinner></Spinner>
+        </BoardBody>
+      )}
+    </BoardWrapper>
   );
 }
