@@ -12,10 +12,14 @@ const BoardBody = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
+  font-size: clamp(17px, 2vw, 1.3rem);
 
+  h1 {
+    font-size: 3em;
+  }
   table {
     background-color: #fff;
-    min-width: 60%;
+    min-width: 50%;
     text-align: justify;
   }
 
@@ -23,7 +27,6 @@ const BoardBody = styled.div`
     background-color: aliceblue;
     text-transform: uppercase;
   }
-
   tbody > tr:nth-child(odd) {
     background-color: #f0f0f0;
   }
@@ -67,7 +70,7 @@ export default function Leaderboard() {
     <BoardWrapper>
       {users ? (
         <BoardBody>
-          <h1>Leaderboard</h1>
+          <h1>Top 10 Scores</h1>
           <table>
             <thead>
               <tr>
