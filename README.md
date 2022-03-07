@@ -1,6 +1,6 @@
 # Project: Photo-Tagging-App
 
-[Imgur](https://i.imgur.com/w86Hxfx.png)
+![Imgur](https://i.imgur.com/w86Hxfx.png)
 
 [Live Preview Here!](https://photo-tagging-app-1fd39.web.app/#/)
 
