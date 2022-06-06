@@ -1,7 +1,7 @@
 # Project: Photo-Tagging-App
 
 ![Imgur](https://i.imgur.com/w86Hxfx.png)
-![GIF](https://i.imgur.com/JAsPRs3.gif)
+![GIF](https://i.imgur.com/JAsPRs3.gifv)
 
 [Live Preview Here!](https://photo-tagging-app-1fd39.web.app/#/)
 
